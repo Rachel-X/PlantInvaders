@@ -5,7 +5,7 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.lang import Builder
 
 
-# sign in information is from 
+# sign in information is from https://github.com/deniscraciungabriel/CreateAccountPage-kivy-
 class SignIn(Screen):
     pass
 
