@@ -5,6 +5,7 @@ WindowManager:
 
 <SignIn>:
     name: "main"
+    id: signin
 
     FloatLayout:
 
@@ -74,7 +75,8 @@ WindowManager:
 
 <FilePicker>:
     name: "file_window"
-	id: file_widget
+	id: filepicker
+
 	BoxLayout:
 
 		orientation: "vertical"
@@ -88,8 +90,8 @@ WindowManager:
 			on_selection: file_widget.selected(filechooser.selection)
 
 <Files>:
-    name: "file"
-
+    name: "files"
+    id: files
 
     AnchorLayout:
 
@@ -105,6 +107,7 @@ WindowManager:
 
 <Comments>:
     name: "comments"
+    id: comments
 
     FloatLayout:
 
