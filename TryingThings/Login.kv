@@ -1,0 +1,69 @@
+Manager:
+    SignIn:
+    Second:
+
+<SignIn>:
+    name: "main"
+
+    FloatLayout:
+
+        Label:
+            text: "Create your account"
+            font_size: (root.width + root.height) // 30
+            pos_hint: {"x": 0, "top": 1.4}
+
+        Label:
+            text: "Name:"
+            font_size: (root.width + root.height) // 50
+            pos_hint: {"x": -.35, "top":1.22}
+
+        TextInput:
+            multiline : False
+            pos_hint: {"x": 0.3, "top": 0.756}
+            size_hint: 0.6, 0.07
+            font_size:(root.width + root.height) // 55
+
+        Label:
+            text: "Email:"
+            font_size:(root.width + root.height) // 50
+            pos_hint: {"x": -.354, "top": 1.10}
+
+        TextInput:
+            multiline: False
+            font_size:(root.width + root.height) // 55
+            size_hint: 0.6, 0.07
+            pos_hint: {"x": 0.3, "top": 0.638}
+
+        Label:
+            text: "Password:"
+            font_size:(root.width + root.height) // 50
+            pos_hint: {"x": -.354, "top": 0.98}
+
+        TextInput:
+            multiline: False
+            font_size:(root.width + root.height) // 55
+            size_hint: 0.6, 0.07
+            pos_hint: {"x": 0.3, "top": 0.52}
+
+        Label:
+            text: "Confirm password:"
+            font_size:(root.width + root.height) // 55
+            pos_hint: {"x": -.354, "top": 0.87}
+
+        TextInput:
+            multiline: False
+            font_size:(root.width + root.height) // 55
+            size_hint: 0.6, 0.07
+            pos_hint: {"x": 0.3, "top": 0.402}
+
+        Button:
+            text: "Create Account"
+            pos_hint: {"x": .3, "top":0.15}
+            size_hint: 0.4, 0.1
+            font_size:(root.width + root.height) // 55
+
+        Button:
+            text: "Already Signed In?"
+            pos_hint: {"x": .3, "top":0.3}
+            size_hint: 0.25, 0.07
+            font_size:(root.width + root.height) // 70
