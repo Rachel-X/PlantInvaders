@@ -1,80 +1,50 @@
-"""
-Camera Example
-==============
-
-This example demonstrates a simple use of the camera. It shows a window with
-a buttoned labelled 'play' to turn the camera on and off. Note that
-not finding a camera, perhaps because gstreamer is not installed, will
-throw an exception during the kv language processing.
-
-"""
-
-# Uncomment these lines to see all the messages
-from kivy.logger import Logger
-import logging
-
-Logger.setLevel(logging.TRACE)
-
+import kivy
 from kivy.app import App
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.lang import Builder
-from kivy.uix.boxlayout import BoxLayout
-import time
-
-Builder.load_string('''
-<CameraClick>:
-    orientation: 'vertical'
-    Camera:
-        id: camera
-        play: False
-    ToggleButton:
-        text: 'Play'
-        on_press: camera.play = not camera.play
-        size_hint_y: None
-        height: '48dp'
-    Button:
-        text: 'Capture'
-        size_hint_y: None
-        height: '48dp'
-        on_press: root.capture()
-''')
+from kivy.uix.widget import Widget
 
 
-class CameraClick(BoxLayout):
-
-    # def _on_index(self, *largs):
-    #     self._camera = None
-    #
-    #     if self.index < 0:
-    #         return
-    #         # # # # # # # # # # # change from < 0 to < -1 # # # # # # # # # # # # # # # # # # # # # #
-    #     if self.resolution[0] < -1 or self.resolution[1] < -1:
-    #         return
-    #     self._camera = CoreCamera(index=self.index,
-    #                               resolution=self.resolution, stopped=True)
-    #     # # # # # # # # # # # add init_camera() # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    #     self._camera.init_camera()
-    #
-    #     self._camera.bind(on_load=self._camera_loaded)
-    #     if self.play:
-    #         self._camera.start()
-    #     self._camera.bind(on_texture=self.on_tex)
-
-    def capture(self):
-        """
-        Function to capture the images and give them the names
-        according to their captured time and date.
-        """
-        camera = self.ids['camera']
-        camera.resolution = [640, 480]
-        timestr = time.strftime("%Y%m%d_%H%M%S")
-        camera.export_to_png("IMG_{}.png".format(timestr))
-        print("Captured")
+# sign in information is from https://github.com/deniscraciungabriel/CreateAccountPage-kivy-
+# switching between screens code is from https://www.techwithtim.net/tutorials/kivy-tutorial/multiple-screens/
+# the FilePicker's init function is from the best answer on https://stackoverflow.com/questions/30632327/kivy-adding-widget-to-a-screen
+class SignIn(Screen):
+    pass
 
 
-class TestCamera(App):
+class FilePicker(Widget):
 
+    def selected(self, filename):
+        try:
+            self.ids.plant_image.source = filename[0]  # todo: make this a global variable or something?
+            # print(filename[0])
+        except:
+            pass
+
+
+class Files(Screen):
+    def __init__(self, **kwargs):
+        super(Files, self).__init__(**kwargs)
+        self.picker = FilePicker()
+        self.add_widget(self.picker)
+
+
+class Comments(Screen):
+    pass
+
+
+class WindowManager(ScreenManager):
+    pass
+
+
+kv = Builder.load_file("Login.kv")
+
+
+class PlantApp(App):
     def build(self):
-        return CameraClick()
+        return kv
 
 
-TestCamera().run()
+if __name__ == '__main__':
+    PlantApp().run()
