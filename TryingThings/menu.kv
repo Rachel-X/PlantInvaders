@@ -1,5 +1,10 @@
-<MyLayout>
-	id: my_widget
+WindowManager:
+    FileWindow:
+    ImageWindow:
+
+<FileWindow>:
+    name: "file_window"
+	id: file_widget
 	BoxLayout:
 
 		orientation: "vertical"
@@ -9,10 +14,25 @@
 		spacing: 20
 
 		Image:
-			id: my_image
+			id: plant_image
 			source: ""
-
 
 		FileChooserListView:
 			id: filechooser
-			on_selection: my_widget.selected(filechooser.selection)
+			on_selection: file_widget.selected(filechooser.selection)
+
+        Button:
+            id: submit_button
+            text: "Submit"
+            on_release:
+                app.root.current = "image_window"
+                root.manager.transition.direction = "left"
+
+<ImageWindow>:
+    name: "image_window"
+
+    Button:
+        text: "Go Back"
+        on_release:
+            app.root.current = "file_window"
+            root.manager.transition.direction = "right"
