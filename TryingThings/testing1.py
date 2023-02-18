@@ -19,7 +19,7 @@ class FilePicker(Screen):
     pass
 
 
-class CommentsScreen(Screen):
+class Comments(Screen):
     pass
 
 

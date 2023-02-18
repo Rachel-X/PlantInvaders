@@ -1,6 +1,7 @@
-Manager:
+WindowManager:
     SignIn:
-    Second:
+    FilePicker:
+    Comments:
 
 <SignIn>:
     name: "main"
@@ -61,9 +62,35 @@ Manager:
             pos_hint: {"x": .3, "top":0.15}
             size_hint: 0.4, 0.1
             font_size:(root.width + root.height) // 55
+            on_release:
+                app.root.current = "file"
+                root.manager.transition.direction = "left"
 
         Button:
             text: "Already Signed In?"
             pos_hint: {"x": .3, "top":0.3}
             size_hint: 0.25, 0.07
             font_size:(root.width + root.height) // 70
+
+<FilePicker>:
+    name: "file"
+
+
+    AnchorLayout:
+
+        anchor_x: "center"
+        anchor_y: "bottom"
+
+        Button:
+            size_hint: 0.25, 0.07
+            text: "Submit"
+            on_release:
+                app.root.current = "comments"
+                root.manager.transition.direction = "left"
+
+<Comments>:
+    name: "comments"
+
+    FloatLayout:
+        Label:
+            text: "Temporary! for testing."
