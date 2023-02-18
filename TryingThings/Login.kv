@@ -1,6 +1,6 @@
 WindowManager:
     SignIn:
-    FilePicker:
+    Files:
     Comments:
 
 <SignIn>:
@@ -73,6 +73,21 @@ WindowManager:
             font_size:(root.width + root.height) // 70
 
 <FilePicker>:
+    name: "file_window"
+	id: file_widget
+	BoxLayout:
+
+		orientation: "vertical"
+		size: root.width, root.height
+
+		padding: 50
+		spacing: 20
+
+		FileChooserListView:
+			id: filechooser
+			on_selection: file_widget.selected(filechooser.selection)
+
+<Files>:
     name: "file"
 
 
@@ -92,5 +107,10 @@ WindowManager:
     name: "comments"
 
     FloatLayout:
+
+        Image:
+			id: plant_image
+			source: ""
+
         Label:
             text: "Temporary! for testing."

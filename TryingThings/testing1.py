@@ -7,16 +7,27 @@ from kivy.uix.widget import Widget
 
 
 # sign in information is from https://github.com/deniscraciungabriel/CreateAccountPage-kivy-
+# switching between screens code is from https://www.techwithtim.net/tutorials/kivy-tutorial/multiple-screens/
+# the FilePicker's init function is from the best answer on https://stackoverflow.com/questions/30632327/kivy-adding-widget-to-a-screen
 class SignIn(Screen):
     pass
 
 
-class FileLayout(Widget):
-    pass
+class FilePicker(Widget):
+
+    def selected(self, filename):
+        try:
+            self.ids.plant_image.source = filename[0]  # todo: make this a global variable or something?
+            # print(filename[0])
+        except:
+            pass
 
 
-class FilePicker(Screen):
-    pass
+class Files(Screen):
+    def __init__(self, **kwargs):
+        super(Files, self).__init__(**kwargs)
+        self.picker = FilePicker()
+        self.add_widget(self.picker)
 
 
 class Comments(Screen):
@@ -30,9 +41,10 @@ class WindowManager(ScreenManager):
 kv = Builder.load_file("Login.kv")
 
 
-class LoginApp(App):
+class PlantApp(App):
     def build(self):
         return kv
 
 
-LoginApp().run()
+if __name__ == '__main__':
+    PlantApp().run()
