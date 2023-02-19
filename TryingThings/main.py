@@ -71,9 +71,8 @@ class HomePage(MDScreen):
                     profile_pic=self.profile_picture,
                     post=data[username]['post'],
                     caption=data[username]['caption'],
-                    likes=data[username]['likes'],
-                    comments=data[username]['comments'],
-                    posted_ago=data[username]['posted_ago']
+                    up_votes=data[username]['up_votes'],
+                    comments=data[username]['comments']
                 ))
 
 
