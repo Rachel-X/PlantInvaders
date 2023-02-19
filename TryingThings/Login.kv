@@ -3,6 +3,7 @@ WindowManager:
     HomePage
     Files:
     Comments:
+    VerifiedPage:
 
 <SignIn>:
     name: "main"
@@ -104,6 +105,15 @@ WindowManager:
             color: 0, 0, 0, 1
             pos_hint: {"center_x": 0.5, "center_y": 0.9}
             text: "Photo uploaded!"
+
+        Button:
+            text: "Back to Home"
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            size_hint: 0.7, 0.1
+            font_size:(root.width + root.height) // 55
+            on_release:
+                app.root.current = "verifiedpage"
+                root.manager.transition.direction = "left"
 
 <HomePage>:
     name: "home"
@@ -248,6 +258,123 @@ WindowManager:
             text: f'{root.posted_ago} agp'
 
 
+<VerifiedPage>:
+    name: "verifiedpage"
+    id: verifiedpage
+    orientation: 'vertical'
+    MDBoxLayout:
+        orientation: 'vertical'
+        # App Bar
+        MDBoxLayout:
+            padding: '5dp'
+            adaptive_height: True
+
+            MDIconButton:
+                icon: 'plus'
+                on_release:
+                    app.root.current = "files"
+                    root.manager.transition.direction = "left"
+
+            MDLabel:
+                text: 'Plant Invaders'
+                halign: 'center'
+                valign: 'top'
+                font_size: 25
+
+            MDIconButton:
+                icon: 'account'
+
+        MDBoxLayout:
+            ScrollView:
+                bar_width: 0
+
+                MDBoxLayout:
+                    adaptive_height: True
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height: True
+                        id: timeline
+
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: 10
+            padding: 10
+
+            MDIconButton:
+                icon: 'home'
+
+            MDLabel:
+                text: 'Plant invaders'
+                halign: 'center'
+                valign: 'top'
+                color: 'white'
+                font_size: 25
+
+            MDIconButton:
+                icon: 'cog'
+
+
+<PostCard>
+    orientation: 'vertical'
+    size_hint_y: None
+    spacing: 2
+    elevation: 0
+
+    MDBoxLayout:
+        adaptive_height: True
+
+        OneLineAvatarListItem:
+            text: f'[b][size=14]{root.username}[/size][/b]'
+            divider: None
+            _no_ripple_effect: True
+
+            ImageLeftWidget:
+                source: root.avatar
+                radius: [20, ]
+        MDIconButton:
+            icon: 'dots-vertical'
+
+    # Post
+    Image:
+        allow_stretch: True
+        source: root.post
+
+    # Reactions
+    MDBoxLayout:
+        padding: 5, 0, 0, 0
+        spacings: 2
+        adaptive_height: True
+
+        MDIconButton:
+            icon: "arrow-up-bold"
+
+        MDIconButton:
+            icon: 'arrow-down-bold'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 5,0,0,0
+        spacing: 3
+        adaptive_height: True
+
+        MyLabel:
+            text: f'{root.up_votes} up votes'
+            bold: True
+
+        MyLabel:
+            markup: True
+            text: f'[b]{root.username}[/b] {root.caption}'
+
+        HalfOpacityLabel:
+            text: f'View all {root.comments} comments'
+
+    MDBoxLayout:
+        adaptive_height: True
+        MDIconButton:
+            icon: 'check-circle'
+        MyLabel:
+            text: 'Verify invasive plant'
 
 <MyLabel@MDLabel>
     adaptive_height:True
