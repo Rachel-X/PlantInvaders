@@ -27,7 +27,7 @@ class HomePage(MDScreen):
         self.list_posts()
 
     def list_posts(self):
-        with open('assets/posts.json') as f_obj:
+        with open('TryingThings/assets/posts.json') as f_obj:
             data = json.load(f_obj)
             for username in data:
                 self.ids.timeline.add_widget(PostCard(

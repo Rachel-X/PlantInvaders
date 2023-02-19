@@ -15,7 +15,6 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.lang import Builder
 from kivy.uix.widget import Widget
 
-
 # sign in information is from https://github.com/deniscraciungabriel/CreateAccountPage-kivy-
 # switching between screens code is from https://www.techwithtim.net/tutorials/kivy-tutorial/multiple-screens/
 # the FilePicker's init function is from the best answer on https://stackoverflow.com/questions/30632327/kivy-adding-widget-to-a-screen
@@ -56,7 +55,7 @@ class PostCard(MDCard):
 
 
 class HomePage(MDScreen):
-    profile_picture = 'https://avatars.githubusercontent.com/u/89080192?v=4'
+    profile_picture = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
 
     def on_enter(self):
         self.list_posts()
@@ -71,12 +70,43 @@ class HomePage(MDScreen):
                     profile_pic=self.profile_picture,
                     post=data[username]['post'],
                     caption=data[username]['caption'],
-                    up_votes=data[username]['up_votes'],
+                    likes=data[username]['likes'],
                     comments=data[username]['comments']
                 ))
 
 
-class MainApp(MDApp):
+class VerifiedPage(MDScreen):
+    profile_picture = 'https://images.unsplash.com/photo-1607990283143-e81e7a2c9349?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1141&q=80'
+
+    def on_enter(self):
+        self.list_posts()
+
+    def list_posts(self):
+        with open('assets/posts.json') as f_obj:
+            data = json.load(f_obj)
+            for username in data:
+                self.ids.timeline.add_widget(PostCard(
+                    username=username,
+                    avatar=data[username]['avatar'],
+                    profile_pic=self.profile_picture,
+                    post=data[username]['post'],
+                    caption=data[username]['caption'],
+                    likes=data[username]['likes'],
+                    comments=data[username]['comments']
+                ))
+
+
+class VerifyApp(MDApp):
+    def build(self):
+        Window.size = [300, 600]
+        Builder.load_file('verified_page.kv')
+        return HomePage()
+
+    def on_start(self):
+        self.root.dispatch('on_enter')
+
+
+class HomeApp(MDApp):
     def build(self):
         Window.size = [300, 600]
         Builder.load_file('home_page.kv')
