@@ -11,68 +11,46 @@ WindowManager:
     FloatLayout:
 
         Label:
-            text: "Create your account"
-            font_size: (root.width + root.height) // 30
-            pos_hint: {"x": 0, "top": 1.4}
+            color: 0, 0, 0, 1
+            text: "Create Account"
+            font_size: 30
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
 
         Label:
-            text: "Name:"
-            font_size: (root.width + root.height) // 50
-            pos_hint: {"x": -.35, "top":1.22}
-
-        TextInput:
-            multiline : False
-            pos_hint: {"x": 0.3, "top": 0.756}
-            size_hint: 0.6, 0.07
-            font_size:(root.width + root.height) // 55
-
-        Label:
+            color: 0, 0, 0, 1
             text: "Email:"
-            font_size:(root.width + root.height) // 50
-            pos_hint: {"x": -.354, "top": 1.10}
+            font_size: 20
+            pos_hint: {"center_x": 0.15, "center_y": 0.8}
 
         TextInput:
             multiline: False
-            font_size:(root.width + root.height) // 55
-            size_hint: 0.6, 0.07
-            pos_hint: {"x": 0.3, "top": 0.638}
+            height: 1
+            font_size: 18
+            size_hint: 0.9, 0.05
+            pos_hint: {"center_x": 0.5, "center_y": 0.7}
 
         Label:
+            color: 0, 0, 0, 1
+            height: 1
             text: "Password:"
-            font_size:(root.width + root.height) // 50
-            pos_hint: {"x": -.354, "top": 0.98}
+            font_size: 20
+            pos_hint: {"center_x": 0.2, "center_y": 0.6}
 
         TextInput:
             multiline: False
-            font_size:(root.width + root.height) // 55
-            size_hint: 0.6, 0.07
-            pos_hint: {"x": 0.3, "top": 0.52}
-
-        Label:
-            text: "Confirm password:"
-            font_size:(root.width + root.height) // 55
-            pos_hint: {"x": -.354, "top": 0.87}
-
-        TextInput:
-            multiline: False
-            font_size:(root.width + root.height) // 55
-            size_hint: 0.6, 0.07
-            pos_hint: {"x": 0.3, "top": 0.402}
+            font_size: 18
+            size_hint: 0.9, 0.05
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
         Button:
-            text: "Create Account"
-            pos_hint: {"x": .3, "top":0.15}
-            size_hint: 0.4, 0.1
+            text: "Sign In"
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            size_hint: 0.7, 0.1
             font_size:(root.width + root.height) // 55
             on_release:
                 app.root.current = "home"
                 root.manager.transition.direction = "left"
 
-        Button:
-            text: "Already Signed In?"
-            pos_hint: {"x": .3, "top":0.3}
-            size_hint: 0.25, 0.07
-            font_size:(root.width + root.height) // 70
 
 <FilePicker>:
     name: "file_window"
