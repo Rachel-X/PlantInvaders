@@ -3,10 +3,12 @@ WindowManager:
     HomePage:
     Files:
     Comments:
+    VerifiedPage:
 
 <SignIn>:
     name: "main"
     id: signin
+
 
     FloatLayout:
 
@@ -253,3 +255,41 @@ WindowManager:
     text_color: 0,0,0,0.5
 
 
+<VerifiedPage>:
+    name: "verifiedpage"
+    id: verifiedpage
+
+    orientation: 'vertical'
+        MDBoxLayout:
+            orientation: 'vertical'
+            # App Bar
+            MDBoxLayout:
+                padding: '5dp'
+                adaptive_height: True
+
+                MDIconButton:
+                    icon: 'plus'
+                    on_release:
+                        app.root.current = "files"
+                        root.manager.transition.direction = "left"
+
+                MDLabel:
+                    text: 'Plant Invaders'
+                    halign: 'center'
+                    valign: 'top'
+                    font_size: 25
+
+                MDIconButton:
+                    icon: 'account'
+
+    FloatLayout:
+
+        Image:
+			id: plant_image
+			source: "https://images.unsplash.com/photo-1567566221756-5282476c4684?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
+
+        MDLabel:
+            text: "Verify this is an invasive specie"
+
+        MDIconButton:
+            icon: 'check-circle'

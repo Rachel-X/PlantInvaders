@@ -84,7 +84,6 @@ class HomeApp(MDApp):
     def on_start(self):
         self.root.dispatch('on_enter')
 
-
 class WindowManager(ScreenManager):
     pass
 
