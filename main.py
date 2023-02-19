@@ -75,37 +75,6 @@ class HomePage(MDScreen):
                 ))
 
 
-class VerifiedPage(MDScreen):
-    profile_picture = 'https://images.unsplash.com/photo-1607990283143-e81e7a2c9349?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1141&q=80'
-
-    def on_enter(self):
-        self.list_posts()
-
-    def list_posts(self):
-        with open('assets/posts.json') as f_obj:
-            data = json.load(f_obj)
-            for username in data:
-                self.ids.timeline.add_widget(PostCard(
-                    username=username,
-                    avatar=data[username]['avatar'],
-                    profile_pic=self.profile_picture,
-                    post=data[username]['post'],
-                    caption=data[username]['caption'],
-                    likes=data[username]['likes'],
-                    comments=data[username]['comments']
-                ))
-
-
-class VerifyApp(MDApp):
-    def build(self):
-        Window.size = [300, 600]
-        Builder.load_file('verified_page.kv')
-        return HomePage()
-
-    def on_start(self):
-        self.root.dispatch('on_enter')
-
-
 class HomeApp(MDApp):
     def build(self):
         Window.size = [300, 600]
