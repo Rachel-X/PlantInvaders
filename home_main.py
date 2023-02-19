@@ -9,20 +9,15 @@ from kivymd.uix.card import MDCard
 from kivy.properties import StringProperty
 
 
-class CircularAvatarImage(MDCard):
-    avatar = StringProperty()
-    name = StringProperty()
-
-
 class PostCard(MDCard):
     profile_pic = StringProperty()
     avatar = StringProperty()
     username = StringProperty()
     post = StringProperty()
     caption = StringProperty()
-    up_votes = StringProperty()
-    down_votes = StringProperty()
+    likes = StringProperty()
     comments = StringProperty()
+    posted_ago = StringProperty()
 
 
 class HomePage(MDScreen):
@@ -41,9 +36,9 @@ class HomePage(MDScreen):
                     profile_pic=self.profile_picture,
                     post=data[username]['post'],
                     caption=data[username]['caption'],
-                    up_votes=data[username]['up_votes'],
-                    down_votes=data[username]['down_votes'],
-                    comments=data[username]['comments']
+                    likes=data[username]['likes'],
+                    comments=data[username]['comments'],
+                    posted_ago=data[username]['posted_ago']
                 ))
 
 
