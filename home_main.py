@@ -45,7 +45,7 @@ class HomePage(MDScreen):
 class MainApp(MDApp):
     def build(self):
         Window.size = [300, 600]
-        Builder.load_file('home_page.kv')
+        Builder.load_file('TryingThings/home_page.kv')
         return HomePage()
 
     def on_start(self):

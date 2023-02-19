@@ -9,6 +9,9 @@
 
             MDIconButton:
                 icon: 'plus'
+                on_release:
+                    app.root.current = "files"
+                    root.manager.transition.direction = "left"
 
             MDLabel:
                 text: 'Plant Invaders'
